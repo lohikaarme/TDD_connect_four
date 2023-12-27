@@ -19,6 +19,14 @@ class Board
     end
   end
 
+  def update_board(player, position, game_board = @game_board)
+    column = position - 1
+    row = valid_row(column)
+    if row
+      game_board[row][column] = player
+    end
+  end
+
   private
 
   def cell(game_board, row, column)
@@ -28,5 +36,15 @@ class Board
     else
       cell[:sym]
     end
+  end
+
+  def valid_row(column, game_board = @game_board)
+    valid_row = false
+    i = 5
+    until valid_row || i < 0
+      valid_row = i if game_board[i][(column)].nil?
+      i -= 1
+    end
+    valid_row
   end
 end
