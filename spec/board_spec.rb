@@ -13,9 +13,9 @@ describe Board do
         expect(board.all? { |sub_arr| sub_arr.length == 7 }).to eq(true)
       end
 
-      it 'prints out the game board' do
+      it 'prints out an empty game board' do
         expect do
-          Board.print_board(game_board)
+          game_board.print_board
         end.to output("\n      1    2    3    4    5    6    7\n    ------------------------------------\n    | ⚫ | ⚫ | ⚫ | ⚫ | ⚫ | ⚫ | ⚫ |\n    ------------------------------------\n    | ⚫ | ⚫ | ⚫ | ⚫ | ⚫ | ⚫ | ⚫ |\n    ------------------------------------\n    | ⚫ | ⚫ | ⚫ | ⚫ | ⚫ | ⚫ | ⚫ |\n    ------------------------------------\n    | ⚫ | ⚫ | ⚫ | ⚫ | ⚫ | ⚫ | ⚫ |\n    ------------------------------------\n    | ⚫ | ⚫ | ⚫ | ⚫ | ⚫ | ⚫ | ⚫ |\n    ------------------------------------\n    | ⚫ | ⚫ | ⚫ | ⚫ | ⚫ | ⚫ | ⚫ |\n    ------------------------------------\n").to_stdout
       end
     end
