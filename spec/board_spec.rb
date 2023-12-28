@@ -74,4 +74,47 @@ describe Board do
       end
     end
   end
+
+  describe '#win_check' do
+    let(:p1) { { player: 1, sym: '🟡' } }
+    let(:p2) { { player: 2, sym: '🔵' } }
+    subject(:winning_board) { described_class.new }
+    context 'a player has a winning position' do
+      it 'returns a win state on a horizontal alignment' do
+          winning_board.instance_variable_set(:@game_board, [
+            [nil, nil, nil, nil, nil, nil, nil,],
+            [nil, nil, nil, nil, nil, nil, nil,],
+            [nil, nil, nil, nil, nil, nil, nil,],
+            [nil, nil, nil, nil, nil, nil, nil,],
+            [nil, nil, nil, nil, nil, nil, nil,],
+            [nil, p1, p1, p1, p1, nil, nil,],
+          ])
+          expect(winning_board.won?).to eq(p1)
+        end
+        it 'returns a win state on a vertical alignment' do
+          winning_board.instance_variable_set(:@game_board, [
+            [nil, nil, nil, nil, nil, nil, nil,],
+            [nil, nil, nil, nil, nil, nil, nil,],
+            [nil, p1, nil, nil, nil, nil, nil,],
+            [nil, p1, nil, nil, nil, nil, nil,],
+            [nil, p1, nil, nil, nil, nil, nil,],
+            [nil, p1, nil, nil, nil, nil, nil,],
+          ])
+          expect(winning_board.won?).to eq(p1)
+        end
+        it 'returns a win state on a diagonal alignment' do
+          winning_board.instance_variable_set(:@game_board, [
+            [nil, nil, nil, nil, nil, nil, nil,],
+            [nil, nil, nil, nil, nil, nil, nil,],
+            [nil, nil, nil, nil, p1, nil, nil,],
+            [nil, nil, nil, p1, nil, nil, nil,],
+            [nil, nil, p1, nil, nil, nil, nil,],
+            [nil, p1, nil, nil, nil, nil, nil,],
+          ])
+        expect(winning_board.won?).to eq(p1)
+      end
+    end
+
+  end
+
 end
