@@ -31,46 +31,46 @@ describe Board do
     subject(:changing_board) { described_class.new }
     context 'a player adds a piece to a column' do
       it 'updates cell [5,0] with p1' do
-        expect { changing_board.update_board(p1, 1) }.to change { changing_board.instance_variable_get(:@game_board)[5][0]}.from(nil).to(p1)
+        expect { changing_board.update_board(p1, 1) }.to change { changing_board.instance_variable_get(:@game_board)[5][0] }.from(nil).to(p1)
       end
       it 'updates cell [4,0] with p2' do
-        expect { changing_board.update_board(p1, 1) }.to change { changing_board.instance_variable_get(:@game_board)[5][0]}.from(nil).to(p1)
-        expect { changing_board.update_board(p2, 1) }.to change { changing_board.instance_variable_get(:@game_board)[4][0]}.from(nil).to(p2)
+        expect { changing_board.update_board(p1, 1) }.to change { changing_board.instance_variable_get(:@game_board)[5][0] }.from(nil).to(p1)
+        expect { changing_board.update_board(p2, 1) }.to change { changing_board.instance_variable_get(:@game_board)[4][0] }.from(nil).to(p2)
       end
       it 'updates cell [3,0] with p1' do
-        expect { changing_board.update_board(p1, 1) }.to change { changing_board.instance_variable_get(:@game_board)[5][0]}.from(nil).to(p1)
-        expect { changing_board.update_board(p2, 1) }.to change { changing_board.instance_variable_get(:@game_board)[4][0]}.from(nil).to(p2)
-        expect { changing_board.update_board(p1, 1) }.to change { changing_board.instance_variable_get(:@game_board)[3][0]}.from(nil).to(p1)
+        expect { changing_board.update_board(p1, 1) }.to change { changing_board.instance_variable_get(:@game_board)[5][0] }.from(nil).to(p1)
+        expect { changing_board.update_board(p2, 1) }.to change { changing_board.instance_variable_get(:@game_board)[4][0] }.from(nil).to(p2)
+        expect { changing_board.update_board(p1, 1) }.to change { changing_board.instance_variable_get(:@game_board)[3][0] }.from(nil).to(p1)
       end
       it 'updates cell [2,0] with p2' do
-        expect { changing_board.update_board(p1, 1) }.to change { changing_board.instance_variable_get(:@game_board)[5][0]}.from(nil).to(p1)
-        expect { changing_board.update_board(p2, 1) }.to change { changing_board.instance_variable_get(:@game_board)[4][0]}.from(nil).to(p2)
-        expect { changing_board.update_board(p1, 1) }.to change { changing_board.instance_variable_get(:@game_board)[3][0]}.from(nil).to(p1)
-        expect { changing_board.update_board(p2, 1) }.to change { changing_board.instance_variable_get(:@game_board)[2][0]}.from(nil).to(p2)
+        expect { changing_board.update_board(p1, 1) }.to change { changing_board.instance_variable_get(:@game_board)[5][0] }.from(nil).to(p1)
+        expect { changing_board.update_board(p2, 1) }.to change { changing_board.instance_variable_get(:@game_board)[4][0] }.from(nil).to(p2)
+        expect { changing_board.update_board(p1, 1) }.to change { changing_board.instance_variable_get(:@game_board)[3][0] }.from(nil).to(p1)
+        expect { changing_board.update_board(p2, 1) }.to change { changing_board.instance_variable_get(:@game_board)[2][0] }.from(nil).to(p2)
       end
       it 'updates cell [1,0] with p1' do
-        expect { changing_board.update_board(p1, 1) }.to change { changing_board.instance_variable_get(:@game_board)[5][0]}.from(nil).to(p1)
-        expect { changing_board.update_board(p2, 1) }.to change { changing_board.instance_variable_get(:@game_board)[4][0]}.from(nil).to(p2)
-        expect { changing_board.update_board(p1, 1) }.to change { changing_board.instance_variable_get(:@game_board)[3][0]}.from(nil).to(p1)
-        expect { changing_board.update_board(p2, 1) }.to change { changing_board.instance_variable_get(:@game_board)[2][0]}.from(nil).to(p2)
-        expect { changing_board.update_board(p1, 1) }.to change { changing_board.instance_variable_get(:@game_board)[1][0]}.from(nil).to(p1)
+        expect { changing_board.update_board(p1, 1) }.to change { changing_board.instance_variable_get(:@game_board)[5][0] }.from(nil).to(p1)
+        expect { changing_board.update_board(p2, 1) }.to change { changing_board.instance_variable_get(:@game_board)[4][0] }.from(nil).to(p2)
+        expect { changing_board.update_board(p1, 1) }.to change { changing_board.instance_variable_get(:@game_board)[3][0] }.from(nil).to(p1)
+        expect { changing_board.update_board(p2, 1) }.to change { changing_board.instance_variable_get(:@game_board)[2][0] }.from(nil).to(p2)
+        expect { changing_board.update_board(p1, 1) }.to change { changing_board.instance_variable_get(:@game_board)[1][0] }.from(nil).to(p1)
       end
       it 'updates cell [0,0] with p2' do
-        expect { changing_board.update_board(p1, 1) }.to change { changing_board.instance_variable_get(:@game_board)[5][0]}.from(nil).to(p1)
-        expect { changing_board.update_board(p2, 1) }.to change { changing_board.instance_variable_get(:@game_board)[4][0]}.from(nil).to(p2)
-        expect { changing_board.update_board(p1, 1) }.to change { changing_board.instance_variable_get(:@game_board)[3][0]}.from(nil).to(p1)
-        expect { changing_board.update_board(p2, 1) }.to change { changing_board.instance_variable_get(:@game_board)[2][0]}.from(nil).to(p2)
-        expect { changing_board.update_board(p1, 1) }.to change { changing_board.instance_variable_get(:@game_board)[1][0]}.from(nil).to(p1)
-        expect { changing_board.update_board(p2, 1) }.to change { changing_board.instance_variable_get(:@game_board)[0][0]}.from(nil).to(p2)
+        expect { changing_board.update_board(p1, 1) }.to change { changing_board.instance_variable_get(:@game_board)[5][0] }.from(nil).to(p1)
+        expect { changing_board.update_board(p2, 1) }.to change { changing_board.instance_variable_get(:@game_board)[4][0] }.from(nil).to(p2)
+        expect { changing_board.update_board(p1, 1) }.to change { changing_board.instance_variable_get(:@game_board)[3][0] }.from(nil).to(p1)
+        expect { changing_board.update_board(p2, 1) }.to change { changing_board.instance_variable_get(:@game_board)[2][0] }.from(nil).to(p2)
+        expect { changing_board.update_board(p1, 1) }.to change { changing_board.instance_variable_get(:@game_board)[1][0] }.from(nil).to(p1)
+        expect { changing_board.update_board(p2, 1) }.to change { changing_board.instance_variable_get(:@game_board)[0][0] }.from(nil).to(p2)
       end
       it 'does not update game board when given cell [-1,0] with p1' do
-        expect { changing_board.update_board(p1, 1) }.to change { changing_board.instance_variable_get(:@game_board)[5][0]}.from(nil).to(p1)
-        expect { changing_board.update_board(p2, 1) }.to change { changing_board.instance_variable_get(:@game_board)[4][0]}.from(nil).to(p2)
-        expect { changing_board.update_board(p1, 1) }.to change { changing_board.instance_variable_get(:@game_board)[3][0]}.from(nil).to(p1)
-        expect { changing_board.update_board(p2, 1) }.to change { changing_board.instance_variable_get(:@game_board)[2][0]}.from(nil).to(p2)
-        expect { changing_board.update_board(p1, 1) }.to change { changing_board.instance_variable_get(:@game_board)[1][0]}.from(nil).to(p1)
-        expect { changing_board.update_board(p2, 1) }.to change { changing_board.instance_variable_get(:@game_board)[0][0]}.from(nil).to(p2)
-        expect { changing_board.update_board(p1, 1) }.not_to change { changing_board.instance_variable_get(:@game_board)}
+        expect { changing_board.update_board(p1, 1) }.to change { changing_board.instance_variable_get(:@game_board)[5][0] }.from(nil).to(p1)
+        expect { changing_board.update_board(p2, 1) }.to change { changing_board.instance_variable_get(:@game_board)[4][0] }.from(nil).to(p2)
+        expect { changing_board.update_board(p1, 1) }.to change { changing_board.instance_variable_get(:@game_board)[3][0] }.from(nil).to(p1)
+        expect { changing_board.update_board(p2, 1) }.to change { changing_board.instance_variable_get(:@game_board)[2][0] }.from(nil).to(p2)
+        expect { changing_board.update_board(p1, 1) }.to change { changing_board.instance_variable_get(:@game_board)[1][0] }.from(nil).to(p1)
+        expect { changing_board.update_board(p2, 1) }.to change { changing_board.instance_variable_get(:@game_board)[0][0] }.from(nil).to(p2)
+        expect { changing_board.update_board(p1, 1) }.not_to change { changing_board.instance_variable_get(:@game_board) }
       end
     end
   end
@@ -78,43 +78,112 @@ describe Board do
   describe '#win_check' do
     let(:p1) { { player: 1, sym: '🟡' } }
     let(:p2) { { player: 2, sym: '🔵' } }
-    subject(:winning_board) { described_class.new }
     context 'a player has a winning position' do
+      subject(:winning_board) { described_class.new }
       it 'returns a win state on a horizontal alignment' do
-          winning_board.instance_variable_set(:@game_board, [
-            [nil, nil, nil, nil, nil, nil, nil,],
-            [nil, nil, nil, nil, nil, nil, nil,],
-            [nil, nil, nil, nil, nil, nil, nil,],
-            [nil, nil, nil, nil, nil, nil, nil,],
-            [nil, nil, nil, nil, nil, nil, nil,],
-            [nil, p1, p1, p1, p1, nil, nil,],
-          ])
-          expect(winning_board.won?).to eq(p1)
-        end
-        it 'returns a win state on a vertical alignment' do
-          winning_board.instance_variable_set(:@game_board, [
-            [nil, nil, nil, nil, nil, nil, nil,],
-            [nil, nil, nil, nil, nil, nil, nil,],
-            [nil, p1, nil, nil, nil, nil, nil,],
-            [nil, p1, nil, nil, nil, nil, nil,],
-            [nil, p1, nil, nil, nil, nil, nil,],
-            [nil, p1, nil, nil, nil, nil, nil,],
-          ])
-          expect(winning_board.won?).to eq(p1)
-        end
-        it 'returns a win state on a diagonal alignment' do
-          winning_board.instance_variable_set(:@game_board, [
-            [nil, nil, nil, nil, nil, nil, nil,],
-            [nil, nil, nil, nil, nil, nil, nil,],
-            [nil, nil, nil, nil, p1, nil, nil,],
-            [nil, nil, nil, p1, nil, nil, nil,],
-            [nil, nil, p1, nil, nil, nil, nil,],
-            [nil, p1, nil, nil, nil, nil, nil,],
-          ])
+        winning_board.instance_variable_set(:@game_board, [
+          [nil, nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil, nil],
+          [nil, p1, p1, p1, p1, nil, nil]
+        ])
+        expect(winning_board.won?).to eq(p1)
+      end
+      it 'returns a win state on a vertical alignment' do
+        winning_board.instance_variable_set(:@game_board, [
+          [nil, nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil, nil],
+          [nil, p1, nil, nil, nil, nil, nil],
+          [nil, p1, nil, nil, nil, nil, nil],
+          [nil, p1, nil, nil, nil, nil, nil],
+          [nil, p1, nil, nil, nil, nil, nil]
+        ])
+        expect(winning_board.won?).to eq(p1)
+      end
+      it 'returns a win state on a diagonal alignment' do
+        winning_board.instance_variable_set(:@game_board, [
+          [nil, nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, p1, nil, nil],
+          [nil, nil, nil, p1, nil, nil, nil],
+          [nil, nil, p1, nil, nil, nil, nil],
+          [nil, p1, nil, nil, nil, nil, nil]
+        ])
         expect(winning_board.won?).to eq(p1)
       end
     end
 
-  end
+    context 'no player has a winning position' do
+      subject(:losing_board) { described_class.new }
+      it 'returns a nil state on a horizontal alignment' do
+        losing_board.instance_variable_set(:@game_board, [
+          [nil, nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil, nil],
+          [p1, nil, p1, p1, p1, nil, nil]
+        ])
+        expect(losing_board.won?).to eq(nil)
+      end
+      it 'returns a nil state on a horizontal alignment wrapping edge case' do
+        losing_board.instance_variable_set(:@game_board, [
+          [nil, nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil, nil],
+          [p1, nil, nil, nil, p1, p1, p1]
+        ])
+        expect(losing_board.won?).to eq(nil)
+      end
 
+      it 'returns a nil state on a vertical alignment' do
+        losing_board.instance_variable_set(:@game_board, [
+          [nil, nil, nil, nil, nil, nil, nil],
+          [nil, p1, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil, nil],
+          [nil, p1, nil, nil, nil, nil, nil],
+          [nil, p1, nil, nil, nil, nil, nil],
+          [nil, p1, nil, nil, nil, nil, nil]
+        ])
+        expect(losing_board.won?).to eq(nil)
+      end
+      it 'returns a nil state on a vertical alignment wrapping edge case' do
+        losing_board.instance_variable_set(:@game_board, [
+          [nil, p1, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil, nil],
+          [nil, p1, nil, nil, nil, nil, nil],
+          [nil, p1, nil, nil, nil, nil, nil],
+          [nil, p1, nil, nil, nil, nil, nil]
+        ])
+        expect(losing_board.won?).to eq(nil)
+      end
+      it 'returns a nil state on a diagonal alignment' do
+        losing_board.instance_variable_set(:@game_board, [
+          [nil, nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, p1, nil],
+          [nil, nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, p1, nil, nil, nil],
+          [nil, nil, p1, nil, nil, nil, nil],
+          [nil, p1, nil, nil, nil, nil, nil]
+        ])
+        expect(losing_board.won?).to eq(nil)
+      end
+      it 'returns a nil state on a diagonal alignment wrapping edge case' do
+        losing_board.instance_variable_set(:@game_board, [
+          [nil, nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, p1, nil, nil, nil],
+          [nil, nil, p1, nil, nil, nil, nil],
+          [nil, p1, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil, p1]
+        ])
+        expect(losing_board.won?).to eq(nil)
+      end
+    end
+  end
 end

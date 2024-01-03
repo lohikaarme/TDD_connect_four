@@ -18,6 +18,20 @@ describe Player do
         expect(player2[:player]).to eq(2)
         expect(player2[:sym]).to eq('🔵')
       end
+
+      it 'sets the current player to p1' do
+        player = players.current_turn
+        expect(player).to eq(players.p1)
+      end
+    end
+  end
+
+  describe '#end_turn' do
+    context 'a player\'s turn ends' do
+      it 'updates the current turn' do
+        expect { players.end_turn }.to change { players.current_turn }.from(players.p1).to(players.p2)
+        expect { players.end_turn }.to change { players.current_turn }.from(players.p2).to(players.p1)
+      end
     end
   end
 end

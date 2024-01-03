@@ -7,6 +7,7 @@ class Board
     @game_board = Array.new(6) { Array.new(7) }
   end
 
+  # Prints the board to the console
   def print_board(game_board = @game_board)
     puts "\n      1    2    3    4    5    6    7\n    ------------------------------------\n"
     game_board.each_with_index do |row, r_idx|
@@ -19,14 +20,16 @@ class Board
     end
   end
 
+  # Updates the board with legal player moves
   def update_board(player, position, game_board = @game_board)
     column = position - 1
     row = valid_row(column)
-    if row
-      game_board[row][column] = player
-    end
+    return unless row
+
+    game_board[row][column] = player
   end
 
+  # Checks if a player has won and returns the winning object or nil
   def won?(game_board = @game_board)
     [method(:horizontal_win), method(:vertical_win), method(:diagonal_win)].detect do |winning_func|
       result = winning_func.call(game_board)
@@ -36,6 +39,7 @@ class Board
 
   private
 
+  # Returns the player piece at a give row and column, or ⚫ if the cell is nil
   def cell(game_board, row, column)
     cell = game_board[row][column]
     if cell.nil?
@@ -45,16 +49,18 @@ class Board
     end
   end
 
+  # Checks if the column is empty, and returns the row index if it is
   def valid_row(column, game_board = @game_board)
     valid_row = false
     i = 5
-    until valid_row || i < 0
+    until valid_row || i.negative?
       valid_row = i if game_board[i][(column)].nil?
       i -= 1
     end
     valid_row
   end
 
+  # Checks if an array contains 4 consecutive non-nil elements of the same type
   def array_won?(array)
     current_el = nil
     count = 0
@@ -70,44 +76,46 @@ class Board
     nil
   end
 
+  # Checks if a player has won horizontally, returns winner
   def horizontal_win(game_board = @game_board)
     winner = nil
     game_board.each do |row|
-      if winner = array_won?(row)
-        break
-      end
+      break if (winner = array_won?(row))
     end
     winner
   end
 
-  def vertical_win(game = @game_board)
+  # Checks if a player has won vertically, returns winner
+  def vertical_win(game_board = @game_board)
     winner = nil
     game_board.transpose.each do |row|
-      if winner = array_won?(row)
-        break
-      end
+      break if (winner = array_won?(row))
     end
     winner
   end
 
-  def diagonal_win(game = @game_board)
+  # Checks if a player has won diagonally, returns winner
+  def diagonal_win(game_board = @game_board)
     rows = game_board.count
     columns = game_board[0].count
-    new_arr_count = rows + columns - 1
-    trans_arr = Array.new(new_arr_count) {[]}
 
+    # Calculate and initialize the total number of diagonal arrays needed
+    diagonal_array_count = rows + columns - 1
+    # initialized with `[]` so that `nil` can be added to arrays
+    diagonal_array = Array.new(diagonal_array_count) { [] }
+
+    # Transposes board into diagonal arrays
     game_board.each_with_index do |row, r_idx|
       row.each_with_index do |el, c_idx|
-        arr_idx = r_idx + c_idx
-        trans_arr[arr_idx] << el
+        # Calculate the index for the diagonal array
+        array_idx = r_idx + c_idx
+        diagonal_array[array_idx] << el
       end
     end
 
     winner = nil
-    trans_arr.each do |row|
-      if winner = array_won?(row)
-        break
-      end
+    diagonal_array.each do |row|
+      break if (winner = array_won?(row))
     end
     winner
   end
