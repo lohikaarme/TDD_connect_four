@@ -45,7 +45,7 @@ class Board
     if cell.nil?
       '⚫'
     else
-      cell[:sym]
+      cell.sym
     end
   end
 
