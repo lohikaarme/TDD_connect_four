@@ -6,13 +6,16 @@ require_relative 'player'
 class Game
   attr_accessor :game_board, :players, :current_turn, :move
 
-  def initialize
-    @game_board = Board.new
+  def initialize (game_board = Board.new)
+    @game_board = game_board
     @players = { p1: Player.new(1, '🟡'), p2: Player.new(2, '🔵') }
     @current_turn = @players[:p1]
   end
 
-  def turn
+  def game_loop
+    @game_board.print_board
+    @game_board.update_board(@current_turn, self.player_input)
+    @game_board.won?(@game_board)
   end
 
   def end_turn

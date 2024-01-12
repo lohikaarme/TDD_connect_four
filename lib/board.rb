@@ -22,7 +22,7 @@ class Board
 
   # Updates the board with legal player moves
   def update_board(player, position, game_board = @game_board)
-    column = position - 1
+    column = position.to_i - 1
     row = valid_row(column)
     return unless row
 
