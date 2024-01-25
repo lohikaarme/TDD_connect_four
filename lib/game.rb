@@ -4,26 +4,25 @@ require_relative 'board'
 require_relative 'player'
 
 class Game
-  attr_accessor :game_board, :players, :current_turn, :move
+  attr_accessor :game_board, :players, :current_turn, :move, :winner
 
   def initialize (game_board = Board.new)
     @game_board = game_board
     @players = { p1: Player.new(1, '🟡'), p2: Player.new(2, '🔵') }
     @current_turn = @players[:p1]
+    @game = true
+    @winner = nil
   end
 
   def game_loop
     @game_board.print_board
     @game_board.update_board(@current_turn, self.player_input)
-    @game_board.won?(@game_board)
+    @winner = @game_board.won?(@game_board)
+    self.turn_change
   end
 
-  def end_turn
-    if @current_turn == @players[:p1]
-      @current_turn = @players[:p2]
-    else
-      @current_turn = @players[:p1]
-    end
+  def turn_change
+    @current_turn == @players[:p1] ? @current_turn = @players[:p2] : @current_turn = @players[:p1]
   end
 
   def player_input
@@ -43,5 +42,5 @@ class Game
     @move
   end
 
-  1+1
+
 end
