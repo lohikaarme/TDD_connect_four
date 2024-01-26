@@ -23,6 +23,29 @@ describe Game do
     end
   end
 
+  describe '#continue?' do
+    subject(:continue_game) { described_class.new }
+    before { allow($stdout).to receive(:puts) }
+
+    context 'a player is asked to keep playing' do
+      it 'receives the Enter key' do
+        expect(Kernel).to receive(:gets).and_return("\n")
+        expect { continue_game.continue? }.not_to change { continue_game.game }
+      end
+
+      it 'receives the Esc key' do
+        expect(Kernel).to receive(:gets).and_return("\e")
+        expect { continue_game.continue? }.to change { continue_game.game }.to eq(false)
+      end
+
+      it 'raises an error on an illegal value' do
+        expect(Kernel).to receive(:gets).and_raise('StandardError').once
+        expect(Kernel).to receive(:gets).and_return("\n")
+        expect { continue_game.continue? }.to output(/Erroneous input, try again!/).to_stdout
+      end
+    end
+  end
+
   describe '#player_input' do
     subject(:turn_input) { described_class.new }
     before { allow($stdout).to receive(:puts) }
@@ -52,6 +75,7 @@ describe Game do
       allow(mock_board).to receive(:print_board)
       allow(mock_board).to receive(:update_board).and_return(true)
       allow(mock_board).to receive(:won?).and_return(:p1)
+      allow(turn_game).to receive(:continue?)
      end
 
     context 'a player performs their turn' do
@@ -81,6 +105,11 @@ describe Game do
       it 'changes the turn' do
         expect(turn_game).to receive(:turn_change).once
         turn_game.game_loop
+      end
+
+      it 'continues the game' do
+        expect(turn_game).to receive(:continue?).once
+        expect { turn_game.continue? }.not_to change { turn_game.instance_variable_get(:@game) }
       end
     end
   end
