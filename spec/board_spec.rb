@@ -25,6 +25,9 @@ describe Board do
     end
   end
 
+  # rubocop:disable Metrics/LineLength
+  # rubocop:disable Layout/FirstArrayElementIndentation
+
   describe '#update_board' do
     let(:p1) { { player: 1, sym: '🟡' } }
     let(:p2) { { player: 2, sym: '🔵' } }
@@ -70,7 +73,7 @@ describe Board do
         expect { changing_board.update_board(p2, 1) }.to change { changing_board.instance_variable_get(:@game_board)[2][0] }.from(nil).to(p2)
         expect { changing_board.update_board(p1, 1) }.to change { changing_board.instance_variable_get(:@game_board)[1][0] }.from(nil).to(p1)
         expect { changing_board.update_board(p2, 1) }.to change { changing_board.instance_variable_get(:@game_board)[0][0] }.from(nil).to(p2)
-        expect { changing_board.update_board(p1, 1) }.not_to change { changing_board.instance_variable_get(:@game_board) }
+        expect { changing_board.update_board(p1, 1) }.not_to(change { changing_board.instance_variable_get(:@game_board) })
       end
     end
   end
@@ -186,4 +189,6 @@ describe Board do
       end
     end
   end
+  # rubocop:enable Metrics/LineLength
+  # rubocop:enable Layout/FirstArrayElementIndentation
 end

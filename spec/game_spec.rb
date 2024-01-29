@@ -30,7 +30,7 @@ describe Game do
     context 'a player is asked to keep playing' do
       it 'receives the Enter key' do
         expect(Kernel).to receive(:gets).and_return("\n")
-        expect { continue_game.continue? }.not_to change { continue_game.game }
+        expect { continue_game.continue? }.not_to(change { continue_game.game })
       end
 
       it 'receives the Esc key' do
@@ -76,7 +76,7 @@ describe Game do
       allow(mock_board).to receive(:update_board).and_return(true)
       allow(mock_board).to receive(:won?).and_return(:p1)
       allow(turn_game).to receive(:continue?)
-     end
+    end
 
     context 'a player performs their turn' do
       it 'prints the board' do
@@ -109,7 +109,7 @@ describe Game do
 
       it 'continues the game' do
         expect(turn_game).to receive(:continue?).once
-        expect { turn_game.continue? }.not_to change { turn_game.instance_variable_get(:@game) }
+        expect { turn_game.continue? }.not_to(change { turn_game.instance_variable_get(:@game) })
       end
     end
   end
