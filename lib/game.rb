@@ -12,13 +12,14 @@ class Game
     @current_turn = @players[:p1]
     @game = true
     @winner = nil
+    # play_game
   end
 
   # Main repeating game loop
   def game_loop
     @game_board.print_board
     @game_board.update_board(@current_turn, player_input)
-    @winner = @game_board.won?(@game_board)
+    @winner = @game_board.won?
     turn_change
     continue?
   end
@@ -48,11 +49,11 @@ class Game
 
   # Gets user choice for game piece placement
   def player_input
-    i = true
-    while i
+    loop do
       puts "Player #{@current_turn}, it is your turn, place your piece (1-7):"
       begin
         @move = Kernel.gets.match(/[1-7]/)[0].to_i
+        break
       rescue StandardError
         puts "\n-------------------------------"
         puts '| Erroneous input, try again! |'
@@ -63,4 +64,14 @@ class Game
     end
     @move
   end
+
+  private
+
+#   def play_game
+#     while @game
+#       game_loop
+#     end
+#   end
 end
+
+# Game.new
