@@ -4,7 +4,7 @@ require_relative 'board'
 require_relative 'player'
 
 class Game
-  attr_accessor :game_board, :players, :current_turn, :move, :winner, :game
+  attr_accessor :game_board, :players, :current_turn, :move, :winner, :game, :game_end
 
   def initialize(game_board = Board.new)
     @game_board = game_board
@@ -22,6 +22,7 @@ class Game
     @winner = @game_board.won?
     turn_change
     continue?
+    game_end
   end
 
   # Changes the current player turn based on current state
@@ -63,6 +64,14 @@ class Game
       end
     end
     @move
+  end
+
+
+  def game_end
+    if @winner
+      @game = false
+      puts @winner
+    end
   end
 
   private

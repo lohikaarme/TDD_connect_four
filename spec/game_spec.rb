@@ -113,4 +113,38 @@ describe Game do
       end
     end
   end
-end
+
+  describe '#game_end' do
+    subject(:game_end_test) { described_class.new }
+
+    context 'when a player has won' do
+      before do
+        allow($stdout).to receive(:puts)
+        game_end_test.instance_variable_set(:@winner, :p1)
+      end
+
+      it 'sets the game to false' do
+        expect { game_end_test.game_end }.to change { game_end_test.instance_variable_get(:@game) }.from(true).to(false)
+      end
+
+      it 'prints the winner' do
+        expect { game_end_test.game_end }.to output(/p1/).to_stdout
+      end
+    end
+
+    context 'no one has won' do
+      before do
+        allow($stdout).to receive(:puts)
+        game_end_test.instance_variable_set(:@winner, nil)
+      end
+
+      it 'does not set the game to false' do
+        expect { game_end_test.game_end }.not_to change { game_end_test.instance_variable_get(:@game) }
+      end
+
+      it 'does not print a winner' do
+        expect { game_end_test.game_end }.not_to output(/p1/).to_stdout
+        end
+      end
+    end
+  end
