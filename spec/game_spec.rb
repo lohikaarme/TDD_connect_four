@@ -80,7 +80,8 @@ describe Game do
 
     context 'a player performs their turn' do
       it 'prints the board' do
-        expect(mock_board).to receive(:print_board).once
+        expect(mock_board).to receive(:print_board).twice
+        # happens twice due to the win condition printing, likely need to split this up
         turn_game.game_loop
       end
 

@@ -189,6 +189,44 @@ describe Board do
       end
     end
   end
+
+  describe '#legal_move?' do
+    let(:p1) { { player: 1, sym: '🟡' } }
+    let(:p2) { { player: 2, sym: '🔵' } }
+    subject(:move_test) { described_class.new }
+
+    context 'the player makes a legal move' do
+      # test in an open position
+      it 'returns true' do
+        move_test.instance_variable_set(:@game_board, [
+          [nil, nil, nil, nil, nil, nil, nil],
+          [nil, p1, nil, nil, nil, nil, nil],
+          [nil, p1, nil, nil, nil, nil, nil],
+          [nil, p1, nil, nil, nil, nil, nil],
+          [nil, p1, nil, nil, nil, nil, nil],
+          [nil, p1, nil, nil, nil, nil, nil]
+        ])
+        expect(move_test.legal_move?(2)).to eq(true)
+      end
+
+    end
+
+    context 'the player makes an illegal move' do
+      # test outside the bounds, and in a full column
+      it 'returns false' do
+        move_test.instance_variable_set(:@game_board, [
+          [nil, p1, nil, nil, nil, nil, nil],
+          [nil, p1, nil, nil, nil, nil, nil],
+          [nil, p1, nil, nil, nil, nil, nil],
+          [nil, p1, nil, nil, nil, nil, nil],
+          [nil, p1, nil, nil, nil, nil, nil],
+          [nil, p1, nil, nil, nil, nil, nil]
+        ])
+        expect(move_test.legal_move?(2)).to eq(false)
+      end
+    end
+
+  end
   # rubocop:enable Metrics/LineLength
   # rubocop:enable Layout/FirstArrayElementIndentation
 end

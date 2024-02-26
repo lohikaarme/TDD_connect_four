@@ -37,6 +37,11 @@ class Board
     end
   end
 
+  def legal_move?(move, game_board = @game_board)
+    column = move - 1
+    valid_row(column) == false ? false : true
+  end
+
   private
 
   # Returns the player piece at a give row and column, or ⚫ if the cell is nil

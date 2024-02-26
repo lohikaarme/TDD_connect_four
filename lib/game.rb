@@ -54,7 +54,7 @@ class Game
       puts "Player #{@current_turn}, it is your turn, place your piece (1-7):"
       begin
         @move = Kernel.gets.match(/[1-7]/)[0].to_i
-        break
+        @game_board.legal_move?(@move) ? break : raise
       rescue StandardError
         puts "\n-------------------------------"
         puts '| Erroneous input, try again! |'
@@ -70,17 +70,18 @@ class Game
   def game_end
     if @winner
       @game = false
+      @game_board.print_board
       puts @winner
     end
   end
 
   private
 
-#   def play_game
-#     while @game
-#       game_loop
-#     end
-#   end
+  def play_game
+    while @game
+      game_loop
+    end
+  end
 end
 
 # Game.new
