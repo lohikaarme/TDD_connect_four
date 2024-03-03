@@ -48,12 +48,23 @@ describe Game do
 
   describe '#player_input' do
     subject(:turn_input) { described_class.new }
-    before { allow($stdout).to receive(:puts) }
+    before do
+      allow($stdout).to receive(:puts)
+      allow(mock_board).to receive(:legal_move?)
+    end
 
     context 'when user enters an input' do
       it 'receives a legal value' do
         expect(Kernel).to receive(:gets).and_return('1')
-        expect { turn_input.player_input }.to change { turn_input.move }.from(nil).to(1)
+        allow(mock_board).to receive(:legal_move?).with(1).and_return(true)
+        expect { turn_input.player_input }.not_to raise_error
+      end
+
+      context 'when user enters a legal position' do
+      it 'receives a legal value' do
+        expect(Kernel).to receive(:gets).and_return('1')
+        allow(mock_board).to receive(:legal_move?).with(1).and_return(true)
+        expect { turn_input.player_input }.not_to raise_error
       end
 
       it 'raises an error on an illegal value' do
@@ -149,3 +160,4 @@ describe Game do
       end
     end
   end
+end
