@@ -7,8 +7,8 @@ describe Game do
   let(:mock_board) { instance_double('Board') }
 
   before do
-    allow(Player).to receive(:new).with(1, '🟡').and_return(:p1)
-    allow(Player).to receive(:new).with(2, '🔵').and_return(:p2)
+    allow(Player).to receive(:new).with(1, '🟡').and_return(double('Player', player: 1))
+    allow(Player).to receive(:new).with(2, '🔵').and_return(double('Player', player: 2))
   end
 
   describe '#turn_change' do
@@ -17,8 +17,8 @@ describe Game do
 
     context 'a player\'s turn ends' do
       it 'updates the current turn' do
-        expect { player_change.turn_change }.to change { player_change.current_turn }.from(:p1).to(:p2)
-        expect { player_change.turn_change }.to change { player_change.current_turn }.from(:p2).to(:p1)
+        expect { player_change.turn_change }.to change { player_change.current_turn.player }.from(1).to(2)
+        expect { player_change.turn_change }.to change { player_change.current_turn.player }.from(2).to(1)
       end
     end
   end
@@ -59,8 +59,9 @@ describe Game do
         allow(mock_board).to receive(:legal_move?).with(1).and_return(true)
         expect { turn_input.player_input }.not_to raise_error
       end
+    end
 
-      context 'when user enters a legal position' do
+    context 'when user enters a legal position' do
       it 'receives a legal value' do
         expect(Kernel).to receive(:gets).and_return('1')
         allow(mock_board).to receive(:legal_move?).with(1).and_return(true)
@@ -85,7 +86,7 @@ describe Game do
       allow(Board).to receive(:new).and_return(mock_board)
       allow(mock_board).to receive(:print_board)
       allow(mock_board).to receive(:update_board).and_return(true)
-      allow(mock_board).to receive(:won?).and_return(:p1)
+      allow(mock_board).to receive(:won?).and_return(double('Player', player: 2))
       allow(turn_game).to receive(:continue?)
     end
 
@@ -111,7 +112,7 @@ describe Game do
         expect(mock_board).to receive(:won?)
         turn_game.game_loop
         winner = turn_game.instance_variable_get(:@winner)
-        expect(winner).to eq(:p1)
+        expect(winner.player).to eq(2)
       end
 
       it 'changes the turn' do
@@ -132,7 +133,8 @@ describe Game do
     context 'when a player has won' do
       before do
         allow($stdout).to receive(:puts)
-        game_end_test.instance_variable_set(:@winner, :p1)
+        # game_end_test.instance_variable_set(:@winner, :p1)
+        game_end_test.instance_variable_set(:@winner, double('Player', player: 1))
       end
 
       it 'sets the game to false' do
@@ -140,7 +142,7 @@ describe Game do
       end
 
       it 'prints the winner' do
-        expect { game_end_test.game_end }.to output(/p1/).to_stdout
+        expect { game_end_test.game_end }.to output(/Player 1 wins!/).to_stdout
       end
     end
 
@@ -156,7 +158,6 @@ describe Game do
 
       it 'does not print a winner' do
         expect { game_end_test.game_end }.not_to output(/p1/).to_stdout
-        end
       end
     end
   end

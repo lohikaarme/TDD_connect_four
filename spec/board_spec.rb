@@ -208,7 +208,6 @@ describe Board do
         ])
         expect(move_test.legal_move?(2)).to eq(true)
       end
-
     end
 
     context 'the player makes an illegal move' do
@@ -225,7 +224,6 @@ describe Board do
         expect(move_test.legal_move?(2)).to eq(false)
       end
     end
-
   end
   # rubocop:enable Metrics/LineLength
   # rubocop:enable Layout/FirstArrayElementIndentation

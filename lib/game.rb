@@ -31,17 +31,16 @@ class Game
 
   # Checks if the user wants to continue or end game
   def continue?
-    i = true
-    while i
+    answer = nil
+    loop do
       puts 'Continue?: Enter(Yes) | Escape(No)'
       begin
         answer = Kernel.gets.match(/\n|\e/).to_s
+        break
       rescue StandardError
         puts "\n-------------------------------"
         puts '| Erroneous input, try again! |'
         puts '-------------------------------'
-      else
-        i = false
       end
     end
     answer == "\n" ? return : @game = false
@@ -50,7 +49,7 @@ class Game
   # Gets user choice for game piece placement
   def player_input
     loop do
-      puts "Player #{@current_turn}, it is your turn, place your piece (1-7):"
+      puts "Player #{@current_turn.player}, it is your turn, place your piece (1-7):"
       begin
         @move = Kernel.gets.match(/[1-7]/)[0].to_i
         @game_board.legal_move?(@move) ? break : raise
@@ -58,27 +57,22 @@ class Game
         puts "\n-------------------------------"
         puts '| Erroneous input, try again! |'
         puts '-------------------------------'
-      else
-        i = false
       end
     end
     @move
   end
 
-
   def game_end
-    if @winner
-      @game = false
-      @game_board.print_board
-      puts @winner
-    end
+    return unless @winner
+
+    @game = false
+    @game_board.print_board
+    puts "Player #{@winner.player} wins!"
   end
 
   private
 
   def play_game
-    while @game
-      game_loop
-    end
+    game_loop while @game
   end
 end
