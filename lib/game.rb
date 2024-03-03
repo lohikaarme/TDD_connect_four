@@ -12,7 +12,6 @@ class Game
     @current_turn = @players[:p1]
     @game = true
     @winner = nil
-    # play_game
   end
 
   # Main repeating game loop
@@ -83,5 +82,3 @@ class Game
     end
   end
 end
-
-# Game.new
